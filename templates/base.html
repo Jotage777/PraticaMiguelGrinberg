@@ -1,16 +1,30 @@
 <!doctype html>
-
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Flask pratica Gabriel</title>
+        <title>{{ title }} - Flask Gabriel</title>
         {% else %}
         <title>Bem vindo a minha pagina web</title>
         {% endif %}
     </head>
     <body>
-        <div>Flask Gabriel: <a href="/index">Home</a></div>
+        <div>
+            Flask Gabriel:
+            <br>
+            <a href="{{ url_for('index') }}">Home</a>
+            <br>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </body>
 </html>
