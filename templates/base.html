@@ -2,18 +2,20 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Flask Gabriel</title>
+        <title>{{ title }} - Flask pratica Gabriel</title>
         {% else %}
         <title>Bem vindo a minha pagina web</title>
         {% endif %}
     </head>
     <body>
         <div>
-            Flask Gabriel:
-            <br>
+            Microblog:
             <a href="{{ url_for('index') }}">Home</a>
-            <br>
+            {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
